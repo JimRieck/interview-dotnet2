@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Interfaces
 {
-    interface IRepository<T>
+    public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
+        List<T> GetAll();
 
         T GetById();
 

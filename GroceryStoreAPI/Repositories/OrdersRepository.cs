@@ -8,18 +8,17 @@ namespace GroceryStoreAPI.Repositories
 {
     public class OrdersRepository : IRepository<OrdersRepository>
     {
-       
-        IEnumerable<OrdersRepository> IRepository<OrdersRepository>.GetAll()
+        public List<OrdersRepository> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        OrdersRepository IRepository<OrdersRepository>.GetById()
+        public OrdersRepository GetById()
         {
             throw new NotImplementedException();
         }
 
-        OrdersRepository IRepository<OrdersRepository>.Save()
+        public OrdersRepository Save()
         {
             throw new NotImplementedException();
         }

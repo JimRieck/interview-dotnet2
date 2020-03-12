@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Interfaces
 {
-    interface IService<T>
+    public interface IService<T>
     {
         IEnumerable<T> GetAll();
 
