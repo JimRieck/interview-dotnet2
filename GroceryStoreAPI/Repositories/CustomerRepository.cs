@@ -15,8 +15,8 @@ namespace GroceryStoreAPI.Repositories
         {
             List<Customers> returnedCustomers = new List<Customers>();
 
-            dynamic jsonObj = ReadDataFromFile("customers");
-            var customers = jsonObj.customers; 
+            dynamic customers = ReadDataFromFile("customers");
+           // var customers = jsonObj.customers; 
             foreach (dynamic item in customers)
             {
                 returnedCustomers.Add(new Customers { id = item.id, name = item.name });
@@ -31,14 +31,14 @@ namespace GroceryStoreAPI.Repositories
             JObject rss = JObject.Parse(myJsonString);
 
             dynamic jsonObj = JsonConvert.DeserializeObject(myJsonString);
-            return jsonObj;
+            return jsonObj[tableName];
         }
 
         public List<Customers> Get()
         {
             List<Customers> returnedCustomers = new List<Customers>();
-            var jsonObj = ReadDataFromFile("customers");
-            var customers = jsonObj.customers;
+            var customers = ReadDataFromFile("customers");
+           // var customers = jsonObj.customers;
             foreach (dynamic item in customers)
             {
                 returnedCustomers.Add(new Customers { id = item.id, name = item.name });
