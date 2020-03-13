@@ -8,10 +8,10 @@ using System.Linq;
 
 namespace Tests
 {
-    public class CustomerRepositoryTests
+    public class CustomerRepository
     {
         List<Customers> expectedCustomers;
-        CustomerRepository subjectUnderTest;
+        GroceryStoreAPI.Repositories.CustomerRepository subjectUnderTest;
         int expectedCount = 3;
 
         [SetUp]
@@ -22,7 +22,7 @@ namespace Tests
             expectedCustomers.Add(new Customers { id = 2, name = "Mary" });
             expectedCustomers.Add(new Customers { id = 3, name = "Joe" });
 
-            subjectUnderTest = new CustomerRepository();
+            subjectUnderTest = new GroceryStoreAPI.Repositories.CustomerRepository();
         }
 
         [Test]
