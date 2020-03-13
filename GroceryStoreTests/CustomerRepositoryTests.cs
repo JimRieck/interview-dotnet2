@@ -12,6 +12,7 @@ namespace Tests
     {
         List<Customers> expectedCustomers;
         CustomerRepository subjectUnderTest;
+        int expectedCount = 3;
 
         [SetUp]
         public void Setup()
@@ -27,8 +28,6 @@ namespace Tests
         [Test]
         public void ShouldReturnAllCustomers()
         {
-            int expectedCount = 3;
-            
             List<Customers> actualCustomers = subjectUnderTest.Get().ToList();
 
             Assert.AreEqual(expectedCount, actualCustomers.Count);
@@ -38,7 +37,7 @@ namespace Tests
         [Test]
         public void ShouldReturnCustomerWithId1()
         {
-            int expectedCount = 1;
+            expectedCount = 1;
            
             List<Customers> actualCustomers = subjectUnderTest.Get(t => t.id == 1);
 
@@ -49,8 +48,6 @@ namespace Tests
         [Test]
         public void ShouldReturnAllCustomersWhenNullConditionIsNotPassed()
         {
-            int expectedCount = 3;
-           
             List<Customers> actualCustomers = subjectUnderTest.Get();
 
             Assert.AreEqual(expectedCount, actualCustomers.Count);
