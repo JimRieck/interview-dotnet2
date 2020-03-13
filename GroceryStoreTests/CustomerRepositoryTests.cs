@@ -27,10 +27,21 @@ namespace Tests
         {
             int expectedCount = 3;
             CustomerRepository subjectUnderTest = new CustomerRepository();
-            List<Customers> actualCustomers = subjectUnderTest.GetAll().ToList();
+            List<Customers> actualCustomers = subjectUnderTest.Get().ToList();
 
             Assert.AreEqual(expectedCount, actualCustomers.Count);
             
+        }
+
+        [Test]
+        public void ShouldReturnCustomerWithId1()
+        {
+            int expectedCount = 1;
+            CustomerRepository subjectUnderTest = new CustomerRepository();
+            List<Customers> actualCustomers = subjectUnderTest.Get(t => t.id == 1);
+
+            Assert.AreEqual(expectedCount, actualCustomers.Count);
+
         }
     }
 }
