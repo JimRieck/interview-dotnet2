@@ -11,6 +11,7 @@ namespace Tests
     public class CustomerRepositoryTests
     {
         List<Customers> expectedCustomers;
+        CustomerRepository subjectUnderTest;
 
         [SetUp]
         public void Setup()
@@ -19,14 +20,15 @@ namespace Tests
             expectedCustomers.Add(new Customers { id = 1, name = "Bob" });
             expectedCustomers.Add(new Customers { id = 2, name = "Mary" });
             expectedCustomers.Add(new Customers { id = 3, name = "Joe" });
-            
+
+            subjectUnderTest = new CustomerRepository();
         }
 
         [Test]
         public void ShouldReturnAllCustomers()
         {
             int expectedCount = 3;
-            CustomerRepository subjectUnderTest = new CustomerRepository();
+            
             List<Customers> actualCustomers = subjectUnderTest.Get().ToList();
 
             Assert.AreEqual(expectedCount, actualCustomers.Count);
@@ -37,22 +39,21 @@ namespace Tests
         public void ShouldReturnCustomerWithId1()
         {
             int expectedCount = 1;
-            CustomerRepository subjectUnderTest = new CustomerRepository();
+           
             List<Customers> actualCustomers = subjectUnderTest.Get(t => t.id == 1);
 
             Assert.AreEqual(expectedCount, actualCustomers.Count);
-            Assert.IsTrue(actualCustomers[0].id == 1);
+            Assert.IsTrue(actualCustomers.FirstOrDefault(p => p.id == 1).id == 1);
         }
 
         [Test]
-        public void ShouldReturnAllCustomersWhenNullConditionIsPassed()
+        public void ShouldReturnAllCustomersWhenNullConditionIsNotPassed()
         {
             int expectedCount = 3;
-            CustomerRepository subjectUnderTest = new CustomerRepository();
-            List<Customers> actualCustomers = subjectUnderTest.Get(null);
+           
+            List<Customers> actualCustomers = subjectUnderTest.Get();
 
             Assert.AreEqual(expectedCount, actualCustomers.Count);
-            
         }
     }
 }
