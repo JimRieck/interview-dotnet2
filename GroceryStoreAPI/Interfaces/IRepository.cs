@@ -7,9 +7,7 @@ namespace GroceryStoreAPI.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        List<T> Get<T>();
-
-        List<T> Get(Func<T, bool> condition);
+        List<T> Get(Func<T, bool> condition = null);
 
         T Save();
     }

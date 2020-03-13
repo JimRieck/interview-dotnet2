@@ -41,7 +41,18 @@ namespace Tests
             List<Customers> actualCustomers = subjectUnderTest.Get(t => t.id == 1);
 
             Assert.AreEqual(expectedCount, actualCustomers.Count);
+            Assert.IsTrue(actualCustomers[0].id == 1);
+        }
 
+        [Test]
+        public void ShouldReturnAllCustomersWhenNullConditionIsPassed()
+        {
+            int expectedCount = 3;
+            CustomerRepository subjectUnderTest = new CustomerRepository();
+            List<Customers> actualCustomers = subjectUnderTest.Get(null);
+
+            Assert.AreEqual(expectedCount, actualCustomers.Count);
+            
         }
     }
 }
