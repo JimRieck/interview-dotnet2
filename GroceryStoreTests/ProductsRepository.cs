@@ -27,31 +27,31 @@ namespace Tests
         }
 
         [Test]
-        public void ShouldReturnAllCustomers()
+        public void ShouldReturnAllProducts()
         {
-            List<Products> actualCustomers = subjectUnderTest.Get().ToList();
+            List<Products> actualProducts = subjectUnderTest.Get().ToList();
 
-            Assert.AreEqual(expectedCount, actualCustomers.Count);
+            Assert.AreEqual(expectedCount, actualProducts.Count);
             
         }
 
         [Test]
-        public void ShouldReturnCustomerWithId1()
+        public void ShouldReturnProductsWithId1()
         {
             expectedCount = 1;
            
-            List<Products> actualCustomers = subjectUnderTest.Get(t => t.Id == 1);
+            List<Products> actualProducts = subjectUnderTest.Get(t => t.Id == 1);
 
-            Assert.AreEqual(expectedCount, actualCustomers.Count);
-            Assert.IsTrue(actualCustomers.FirstOrDefault(p => p.Id == 1).Id == 1);
+            Assert.AreEqual(expectedCount, actualProducts.Count);
+            Assert.IsTrue(actualProducts.FirstOrDefault(p => p.Id == 1).Id == 1);
         }
 
         [Test]
-        public void ShouldReturnAllCustomersWhenNullConditionIsNotPassed()
+        public void ShouldReturnAllProductsWhenNullConditionIsNotPassed()
         {
-            List<Products> actualCustomers = subjectUnderTest.Get();
+            List<Products> actualProducts = subjectUnderTest.Get();
 
-            Assert.AreEqual(expectedCount, actualCustomers.Count);
+            Assert.AreEqual(expectedCount, actualProducts.Count);
         }
     }
 }

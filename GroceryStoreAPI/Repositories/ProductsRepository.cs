@@ -11,7 +11,21 @@ namespace GroceryStoreAPI.Repositories
     {
         public List<Products> Get(Func<Products, bool> condition = null)
         {
-            throw new NotImplementedException();
+            List<Products> returnedProducts = new List<Products>();
+
+            dynamic products = ReadDataFromFile("products");
+
+            foreach (dynamic item in products)
+            {
+                returnedProducts.Add(new Products { Id = item.id, Description = item.description, Price = item.price });
+            }
+
+            if (condition != null)
+            {
+                returnedProducts = returnedProducts.Where(condition).ToList();
+            }
+
+            return returnedProducts;
         }
 
         public Products Save()
