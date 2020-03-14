@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Services
 {
-    public class OrdersService : IService<Orders>
+    public abstract class BaseService : IGroceryStoreService
     {
-        public List<Orders> GetAll()
+        public virtual GroceryStoreInfo GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Orders GetById(int customerId)
+        public virtual List<GroceryStoreInfo> GetById()
         {
             throw new NotImplementedException();
         }
 
-        public Orders Save()
+        public virtual GroceryStoreInfo Save(GroceryStoreInfo storeInfo)
         {
             throw new NotImplementedException();
         }

@@ -5,6 +5,7 @@ using GroceryStoreAPI.Repositories;
 using System.Collections.Generic;
 using GroceryStoreAPI;
 using System.Linq;
+using GroceryStoreAPI.Models;
 
 namespace Tests
 {
@@ -28,9 +29,10 @@ namespace Tests
         [Test]
         public void ShouldReturnAllCustomers()
         {
-            List<Customers> actualCustomers = subjectUnderTest.Get().ToList();
+            GroceryStoreInfo info = new GroceryStoreInfo();
+            info = subjectUnderTest.GetAll();
 
-            Assert.AreEqual(expectedCount, actualCustomers.Count);
+            Assert.AreEqual(expectedCount, info.Customers.Count);
             
         }
 
@@ -38,19 +40,11 @@ namespace Tests
         public void ShouldReturnCustomerWithId1()
         {
             expectedCount = 1;
-           
-            List<Customers> actualCustomers = subjectUnderTest.Get(t => t.id == 1);
+            GroceryStoreInfo info = new GroceryStoreInfo();
+            info = subjectUnderTest.GetById(1);
 
-            Assert.AreEqual(expectedCount, actualCustomers.Count);
-            Assert.IsTrue(actualCustomers.FirstOrDefault(p => p.id == 1).id == 1);
-        }
-
-        [Test]
-        public void ShouldReturnAllCustomersWhenNullConditionIsNotPassed()
-        {
-            List<Customers> actualCustomers = subjectUnderTest.Get();
-
-            Assert.AreEqual(expectedCount, actualCustomers.Count);
+            Assert.AreEqual(expectedCount, info.Customers.Count);
+            
         }
     }
 }

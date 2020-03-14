@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CustomerService.cs" />
     <Compile Remove="ItemsRepository.cs" />
+    <Compile Remove="OrdersService.cs" />
   </ItemGroup>
 
   <ItemGroup>

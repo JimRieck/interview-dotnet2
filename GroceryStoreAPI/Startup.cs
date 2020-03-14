@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using GroceryStoreAPI.Interfaces;
+using GroceryStoreAPI.Repositories;
+using GroceryStoreAPI.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +22,13 @@ namespace GroceryStoreAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //services.AddScoped<IGroceryStore, CustomerRepository>();
+            //services.AddScoped<IGroceryStore, OrdersRepository>();
+            //services.AddScoped<IGroceryStore, ProductsRepository>();
+            services.AddScoped<IGroceryStoreService, GroceryStoreService>();
+            services.AddScoped<IGroceryStoreRepository, GroceryStoreRepository>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

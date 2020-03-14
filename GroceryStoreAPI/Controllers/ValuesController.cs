@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GroceryStoreAPI.Interfaces;
+using GroceryStoreAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GroceryStoreAPI.Controllers
@@ -10,11 +12,19 @@ namespace GroceryStoreAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        IGroceryStoreService groceryStoreService { get; set; }
+
+        public ValuesController(IGroceryStoreService groceryStoreService)
+        {
+            this.groceryStoreService = groceryStoreService;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+           
+            return new string[] { "value11", "value21" };
         }
 
         // GET api/values/5

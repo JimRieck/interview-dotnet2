@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Repositories
 {
-    public class OrdersRepository : BaseRepository, IRepository<Orders>
+    public class OrdersRepository : BaseRepository
     {
-        public List<Orders> Get(Func<Orders, bool> condition = null)
+        public override GroceryStoreInfo GetAll()
         {
+            GroceryStoreInfo info = new GroceryStoreInfo();
             List<Orders> returnedOrders = new List<Orders>();
 
             dynamic orders = ReadDataFromFile("orders");
@@ -38,15 +39,24 @@ namespace GroceryStoreAPI.Repositories
                 counter++;
             }
 
-            if (condition != null)
-            {
-                returnedOrders = returnedOrders.Where(condition).ToList();
-            }
+            //if (condition != null)
+            //{
+            //    returnedOrders = returnedOrders.Where(condition).ToList();
+            //}
 
-            return returnedOrders;
+            info.Orders = returnedOrders;
+            return info;
         }
 
-        public Orders Save()
+        public override GroceryStoreInfo GetById(int id)
+        {
+            GroceryStoreInfo info = new GroceryStoreInfo();
+            info = this.GetAll();
+            info.Orders = info.Orders.Where(p => p.Id== id).ToList();
+            return info;
+        }
+
+        public GroceryStoreInfo Save()
         {
             throw new NotImplementedException();
         }

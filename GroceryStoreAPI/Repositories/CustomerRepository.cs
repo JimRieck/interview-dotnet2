@@ -1,14 +1,16 @@
 ﻿using GroceryStoreAPI.Interfaces;
+using GroceryStoreAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace GroceryStoreAPI.Repositories
 {
-    public class CustomerRepository : BaseRepository, IRepository<Customers>
+    public class CustomerRepository : BaseRepository
     {
-        public List<Customers> Get(Func<Customers, bool> condition = null)
+        public override GroceryStoreInfo GetAll()
         {
+            GroceryStoreInfo info = new GroceryStoreInfo();
             List<Customers> returnedCustomers = new List<Customers>();
 
             dynamic customers = ReadDataFromFile("customers");
@@ -18,15 +20,19 @@ namespace GroceryStoreAPI.Repositories
                 returnedCustomers.Add(new Customers { id = item.id, name = item.name });
             }
 
-            if (condition != null)
-            {
-                returnedCustomers = returnedCustomers.Where(condition).ToList();
-            }
-
-            return returnedCustomers;
+            info.Customers = returnedCustomers;
+            return info;
         }
 
-        public Customers Save()
+        public override GroceryStoreInfo GetById(int id)
+        {
+            GroceryStoreInfo info = new GroceryStoreInfo();
+            info = this.GetAll();
+            info.Customers = info.Customers.Where(p => p.id == id).ToList();
+            return info;
+        }
+
+        public GroceryStoreInfo Save()
         {
             throw new NotImplementedException();
         }

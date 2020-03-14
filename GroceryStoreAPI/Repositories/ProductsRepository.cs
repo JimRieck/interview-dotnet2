@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace GroceryStoreAPI.Repositories
 {
-    public class ProductsRepository : BaseRepository, IRepository<Products>
+    public class ProductsRepository : BaseRepository
     {
         public List<Products> Get(Func<Products, bool> condition = null)
         {

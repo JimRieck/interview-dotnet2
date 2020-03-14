@@ -27,9 +27,10 @@ namespace Tests
         [Test]
         public void ShouldReturnAllOrders()
         {
-            List<Orders> actualOrders = subjectUnderTest.Get().ToList();
+            GroceryStoreInfo info = new GroceryStoreInfo();
+            info = subjectUnderTest.GetAll();
 
-            Assert.AreEqual(expectedCount, actualOrders.Count);
+            Assert.AreEqual(expectedCount, info.Orders.Count);
             
         }
 
@@ -37,20 +38,13 @@ namespace Tests
         public void ShouldReturnOrdersWithId1()
         {
             expectedCount = 1;
-           
-            List<Orders> actualOrders = subjectUnderTest.Get(t => t.Id == 1);
+            GroceryStoreInfo info = new GroceryStoreInfo();
+            info = subjectUnderTest.GetById(1);
 
-            Assert.AreEqual(expectedCount, actualOrders.Count);
-            Assert.IsTrue(actualOrders.FirstOrDefault(p => p.Id == 1).Id == 1);
-            Assert.IsTrue(actualOrders.Any());
+            Assert.AreEqual(expectedCount, info.Orders.Count);
+            
         }
 
-        [Test]
-        public void ShouldReturnAllOrdersWhenNullConditionIsNotPassed()
-        {
-            List<Orders> actualOrders = subjectUnderTest.Get();
-
-            Assert.AreEqual(expectedCount, actualOrders.Count);
-        }
+       
     }
 }
