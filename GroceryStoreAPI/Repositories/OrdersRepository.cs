@@ -1,7 +1,9 @@
 ﻿using GroceryStoreAPI.Interfaces;
 using GroceryStoreAPI.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,21 +13,37 @@ namespace GroceryStoreAPI.Repositories
     {
         public List<Orders> Get(Func<Orders, bool> condition = null)
         {
-            List<Orders> returnedCustomers = new List<Orders>();
+            List<Orders> returnedOrders = new List<Orders>();
 
             dynamic orders = ReadDataFromFile("orders");
 
-            foreach (dynamic item in orders)
+            int counter = 0;
+            foreach (dynamic order in orders)
             {
-                returnedCustomers.Add(new Orders { Id = item.id, CustomerId = item.customerId });
+                Orders newOrder = new Orders { Id = order.id, CustomerId = order.customerId, Items = new List<Items>() };
+
+                JToken token = JToken.Parse(order.ToString());
+                JArray items = (JArray)token.SelectToken("items");
+
+                if (items != null)
+                {
+                    foreach (dynamic item in items)
+                    {
+                        Items newItem = new Items { ProductId = (int)item.productId.Value, Quantity = (int)item.quantity.Value };
+                        newOrder.Items.Add(newItem);
+                    }
+                }
+               
+                returnedOrders.Add(newOrder);
+                counter++;
             }
 
             if (condition != null)
             {
-                returnedCustomers = returnedCustomers.Where(condition).ToList();
+                returnedOrders = returnedOrders.Where(condition).ToList();
             }
 
-            return returnedCustomers;
+            return returnedOrders;
         }
 
         public Orders Save()

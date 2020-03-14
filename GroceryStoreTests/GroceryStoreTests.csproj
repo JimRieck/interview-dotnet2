@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ItemsRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="database.json" />
   </ItemGroup>
 

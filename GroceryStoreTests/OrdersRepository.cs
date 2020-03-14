@@ -42,6 +42,7 @@ namespace Tests
 
             Assert.AreEqual(expectedCount, actualOrders.Count);
             Assert.IsTrue(actualOrders.FirstOrDefault(p => p.Id == 1).Id == 1);
+            Assert.IsTrue(actualOrders.Any());
         }
 
         [Test]
