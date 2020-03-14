@@ -1,4 +1,5 @@
 ﻿using GroceryStoreAPI.Interfaces;
+using GroceryStoreAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,19 +7,26 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Services
 {
-    public class ProductsService : IService<ProductsService>
+    public class ProductsService : IService<Products>
     {
-        public IEnumerable<ProductsService> GetAll()
+        IRepository<Products> productsRepository;
+
+        public ProductsService(IRepository<Products> productsRepository)
+        {
+            this.productsRepository = productsRepository;
+        }
+
+        public List<Products> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public ProductsService GetById()
+        public Products GetById(int customerId)
         {
             throw new NotImplementedException();
         }
 
-        public ProductsService Save()
+        public Products Save()
         {
             throw new NotImplementedException();
         }

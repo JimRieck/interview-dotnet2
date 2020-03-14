@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Interfaces
 {
-    public interface IService<T>
+    public interface IService<T> where T : class
     {
-        IEnumerable<T> GetAll();
+        List<T> GetAll();
 
-        T GetById();
+        T GetById(int customerId);
 
         T Save();
     }

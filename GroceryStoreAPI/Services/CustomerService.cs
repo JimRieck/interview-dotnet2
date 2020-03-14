@@ -1,4 +1,5 @@
 ﻿using GroceryStoreAPI.Interfaces;
+using GroceryStoreAPI.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,19 +7,28 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Services
 {
-    public class CustomerService : IService<CustomerService>
+    public class CustomerService : IService<Customers>
     {
-        public IEnumerable<CustomerService> GetAll()
+        IRepository<Customers> customerRepository;
+        
+
+        public CustomerService(IRepository<Customers> customerRepository)
         {
-            throw new NotImplementedException();
+            this.customerRepository = customerRepository;
         }
 
-        public CustomerService GetById()
+        public List<Customers> GetAll()
         {
-            throw new NotImplementedException();
+            return this.customerRepository.Get(null);
+          
         }
 
-        public CustomerService Save()
+        public Customers GetById(int customerId)
+        {
+            return this.customerRepository.Get(p => p.id == customerId).FirstOrDefault();
+        }
+
+        public Customers Save()
         {
             throw new NotImplementedException();
         }
