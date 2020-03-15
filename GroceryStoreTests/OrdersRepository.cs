@@ -13,15 +13,18 @@ namespace Tests
     {
          List<Orders> expectedOrders;
          GroceryStoreAPI.Repositories.OrdersRepository subjectUnderTest;
+        Mock<IItemsRepository> mockItemsRepository;
          int expectedCount = 1;
 
         [SetUp]
         public void Setup()
         {
             expectedOrders = this.GetOrders();
-           
 
-            subjectUnderTest = new GroceryStoreAPI.Repositories.OrdersRepository();
+            mockItemsRepository = new Mock<IItemsRepository>();
+            mockItemsRepository.Setup(p => p.GetAll(It.IsAny<string>())).Returns(this.GetItems());
+
+            subjectUnderTest = new GroceryStoreAPI.Repositories.OrdersRepository(mockItemsRepository.Object);
         }
 
         [Test]
@@ -30,6 +33,7 @@ namespace Tests
             List<Orders> orders = subjectUnderTest.GetAll();
 
             Assert.AreEqual(expectedCount, orders.Count);
+            mockItemsRepository.VerifyAll();
         }
 
         [Test]
@@ -40,7 +44,7 @@ namespace Tests
             Orders order = subjectUnderTest.GetById(1);
 
             Assert.IsNotNull(order);
-            
+            mockItemsRepository.VerifyAll();
         }
 
        

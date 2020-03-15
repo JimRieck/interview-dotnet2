@@ -32,5 +32,13 @@ namespace Tests
             expectedOrders.Add(new Orders { Id = 1, CustomerId = 1 });
             return expectedOrders;
         }
+
+        public List<Items> GetItems()
+        {
+            List<Items> items = new List<Items>();
+            items.Add(new Items { ProductId = 1, Quantity = 2 });
+            items.Add(new Items { ProductId = 2, Quantity = 3 });
+            return items;
+        }
     }
 }

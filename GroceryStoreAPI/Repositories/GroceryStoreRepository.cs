@@ -1,9 +1,5 @@
-﻿using GroceryStoreAPI.Interfaces;
-using GroceryStoreAPI.Models;
+﻿using GroceryStoreAPI.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Repositories
 {
