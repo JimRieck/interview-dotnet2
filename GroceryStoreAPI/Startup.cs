@@ -23,7 +23,6 @@ namespace GroceryStoreAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IGroceryStoreService, GroceryStoreService>();
-            services.AddScoped<IGroceryStoreRepository, GroceryStoreRepository>();
             services.AddScoped<IDataRepository, BaseRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IOrdersRepository, OrdersRepository>();

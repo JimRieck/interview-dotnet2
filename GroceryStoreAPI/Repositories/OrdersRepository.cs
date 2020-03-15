@@ -53,14 +53,5 @@ namespace GroceryStoreAPI.Repositories
         {
             throw new NotImplementedException();
         }
-
-        public dynamic ReadDataFromFile(string tableName)
-        {
-            var myJsonString = File.ReadAllText("database.json");
-            JObject rss = JObject.Parse(myJsonString);
-
-            dynamic jsonObj = JsonConvert.DeserializeObject(myJsonString);
-            return jsonObj[tableName];
-        }
     }
 }
