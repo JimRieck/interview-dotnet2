@@ -12,7 +12,7 @@ namespace Tests
     public class CustomerRepository
     {
         List<Customers> expectedCustomers;
-        GroceryStoreAPI.Repositories.CustomerRepository subjectUnderTest;
+        GroceryStoreAPI.Repositories.CustomerRepository<Customers> subjectUnderTest;
         int expectedCount = 3;
 
         [SetUp]
@@ -23,16 +23,16 @@ namespace Tests
             expectedCustomers.Add(new Customers { id = 2, name = "Mary" });
             expectedCustomers.Add(new Customers { id = 3, name = "Joe" });
 
-            subjectUnderTest = new GroceryStoreAPI.Repositories.CustomerRepository();
+            subjectUnderTest = new GroceryStoreAPI.Repositories.CustomerRepository<Customers>();
         }
 
         [Test]
         public void ShouldReturnAllCustomers()
         {
-            GroceryStoreInfo info = new GroceryStoreInfo();
-            info = subjectUnderTest.GetAll();
+          
+            List<Customers> customers = subjectUnderTest.GetAll();
 
-            Assert.AreEqual(expectedCount, info.Customers.Count);
+            Assert.AreEqual(expectedCount, customers.Count);
             
         }
 
@@ -40,10 +40,10 @@ namespace Tests
         public void ShouldReturnCustomerWithId1()
         {
             expectedCount = 1;
-            GroceryStoreInfo info = new GroceryStoreInfo();
-            info = subjectUnderTest.GetById(1);
+            
+            Customers customer = subjectUnderTest.GetById(1);
 
-            Assert.AreEqual(expectedCount, info.Customers.Count);
+            Assert.IsNotNull(customer);
             
         }
     }

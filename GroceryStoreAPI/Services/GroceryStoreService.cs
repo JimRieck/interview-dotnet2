@@ -8,32 +8,44 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Services
 {
-    public class GroceryStoreService : BaseService
+    public class GroceryStoreService : IGroceryStoreService
     {
         IGroceryStoreRepository groceryRepository;
 
-        IGroceryStoreRepository customerRepository;
-        IGroceryStoreRepository ordersRepository;
-        IGroceryStoreRepository productsRepository;
+        IDataRepository<Customers> customerRepository;
+        IDataRepository<Orders> ordersRepository;
+        IDataRepository<Products> productsRepository;
+        
 
-        public GroceryStoreService(IGroceryStoreRepository groceryRepository, IGroceryStoreRepository customerRepository, IGroceryStoreRepository ordersRepository, IGroceryStoreRepository productsRepository)
+        public GroceryStoreService(IGroceryStoreRepository groceryRepository,
+            IDataRepository<Customers> customerRepository,
+            IDataRepository<Orders> ordersRepository, 
+            IDataRepository<Products> productsRepository)
         {
             this.groceryRepository = groceryRepository;
+            this.customerRepository = customerRepository;
+            this.ordersRepository = ordersRepository;
+            this.productsRepository = productsRepository;
         }
 
-        public override GroceryStoreInfo GetAll()
+        public GroceryStoreInfo Build()
         {
-            return this.groceryRepository.GetAll();
+            GroceryStoreInfo info = new GroceryStoreInfo();
+            info.Customers = customerRepository.GetAll();
+            info.Orders = ordersRepository.GetAll();
+            info.Products = productsRepository.GetAll();
+
+            return info;
         }
 
-        public GroceryStoreInfo GetById(int id)
+        public List<GroceryStoreInfo> GetByCustomerId(int id)
         {
-            return this.groceryRepository.GetById(id);
+            throw new NotImplementedException();
         }
 
         public GroceryStoreInfo Save(GroceryStoreInfo storeInfo)
         {
-            return this.groceryRepository.Save(storeInfo);
+            throw new NotImplementedException();
         }
     }
 }

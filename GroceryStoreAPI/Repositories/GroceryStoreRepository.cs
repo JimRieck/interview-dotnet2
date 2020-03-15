@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Repositories
 {
-    public class GroceryStoreRepository : BaseRepository
+    public class GroceryStoreRepository : IGroceryStoreRepository
     {
         public virtual GroceryStoreInfo GetAll()
         {
@@ -19,7 +19,7 @@ namespace GroceryStoreAPI.Repositories
             throw new NotImplementedException();
         }
 
-        public GroceryStoreInfo Save()
+        public GroceryStoreInfo Save(GroceryStoreInfo storeInfo)
         {
             throw new NotImplementedException();
         }

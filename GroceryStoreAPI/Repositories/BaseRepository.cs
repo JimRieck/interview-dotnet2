@@ -9,29 +9,27 @@ using System.IO;
 
 namespace GroceryStoreAPI.Repositories
 {
-    public abstract class BaseRepository : IGroceryStoreRepository
+    public class BaseRepository<T> : IDataRepository<T> where T : class
     {
-        public virtual GroceryStoreInfo GetAll()
+        public List<T> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public virtual GroceryStoreInfo GetById(int id)
+        public T GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public virtual GroceryStoreInfo Save(GroceryStoreInfo storeInfo)
+        public T Save(T model)
         {
             throw new NotImplementedException();
         }
 
-        protected dynamic ReadDataFromFile(string tableName)
+        public dynamic ReadDataFromFile(string tableName)
         {
             var myJsonString = File.ReadAllText("database.json");
             JObject rss = JObject.Parse(myJsonString);
-
-
 
             dynamic jsonObj = JsonConvert.DeserializeObject(myJsonString);
             return jsonObj[tableName];

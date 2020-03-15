@@ -23,7 +23,7 @@ namespace GroceryStoreAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-           
+            var foo = groceryStoreService.Build();
             return new string[] { "value11", "value21" };
         }
 

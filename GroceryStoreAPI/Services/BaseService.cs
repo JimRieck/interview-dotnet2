@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Services
 {
-    public abstract class BaseService : IGroceryStoreService
+    public class BaseService
     {
         public virtual GroceryStoreInfo GetAll()
         {

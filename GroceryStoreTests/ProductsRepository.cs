@@ -8,7 +8,7 @@ namespace Tests
     public class ProductsRepository
     {
         List<Products> expectedProducts;
-        GroceryStoreAPI.Repositories.ProductsRepository subjectUnderTest;
+        GroceryStoreAPI.Repositories.ProductsRepository<Products> subjectUnderTest;
         int expectedCount = 3;
 
         [SetUp]
@@ -19,13 +19,13 @@ namespace Tests
             expectedProducts.Add(new Products { Id = 2, Description = "orange", Price = .75 });
             expectedProducts.Add(new Products { Id = 3, Description = "bananna", Price = .85 });
 
-            subjectUnderTest = new GroceryStoreAPI.Repositories.ProductsRepository();
+            subjectUnderTest = new GroceryStoreAPI.Repositories.ProductsRepository<Products>();
         }
 
         [Test]
         public void ShouldReturnAllProducts()
         {
-            List<Products> actualProducts = subjectUnderTest.Get().ToList();
+            List<Products> actualProducts = subjectUnderTest.GetAll().ToList();
 
             Assert.AreEqual(expectedCount, actualProducts.Count);
             
@@ -36,18 +36,9 @@ namespace Tests
         {
             expectedCount = 1;
            
-            List<Products> actualProducts = subjectUnderTest.Get(t => t.Id == 1);
+            Products actualProducts = subjectUnderTest.GetById(1);
 
-            Assert.AreEqual(expectedCount, actualProducts.Count);
-            Assert.IsTrue(actualProducts.FirstOrDefault(p => p.Id == 1).Id == 1);
-        }
-
-        [Test]
-        public void ShouldReturnAllProductsWhenNullConditionIsNotPassed()
-        {
-            List<Products> actualProducts = subjectUnderTest.Get();
-
-            Assert.AreEqual(expectedCount, actualProducts.Count);
+            Assert.IsTrue(actualProducts.Id == 1);
         }
     }
 }

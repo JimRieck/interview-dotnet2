@@ -6,35 +6,32 @@ using System.Linq;
 
 namespace GroceryStoreAPI.Repositories
 {
-    public class CustomerRepository : BaseRepository
+    public class CustomerRepository<T> : BaseRepository<T> where T : Customers
     {
-        public override GroceryStoreInfo GetAll()
+        public List<Customers> GetAll()
         {
-            GroceryStoreInfo info = new GroceryStoreInfo();
             List<Customers> returnedCustomers = new List<Customers>();
-
-            dynamic customers = ReadDataFromFile("customers");
+            
+            dynamic customers = this.ReadDataFromFile("customers");
           
             foreach (dynamic item in customers)
             {
                 returnedCustomers.Add(new Customers { id = item.id, name = item.name });
             }
 
-            info.Customers = returnedCustomers;
-            return info;
+            return returnedCustomers;
+            
         }
 
-        public override GroceryStoreInfo GetById(int id)
+        public Customers GetById(int id)
         {
-            GroceryStoreInfo info = new GroceryStoreInfo();
-            info = this.GetAll();
-            info.Customers = info.Customers.Where(p => p.id == id).ToList();
-            return info;
+            return this.GetAll().FirstOrDefault(p => p.id == id);
+            
+            
         }
 
-        public GroceryStoreInfo Save()
-        {
-            throw new NotImplementedException();
+        public Customers Save(Customers customer) {
+            return new Customers();
         }
     }
 }

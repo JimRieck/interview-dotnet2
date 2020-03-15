@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace GroceryStoreAPI.Repositories
 {
-    public class ProductsRepository : BaseRepository
+    public class ProductsRepository<T> : BaseRepository<T> where T : Products
     {
-        public List<Products> Get(Func<Products, bool> condition = null)
+        public List<Products> GetAll()
         {
             List<Products> returnedProducts = new List<Products>();
 
@@ -19,17 +19,20 @@ namespace GroceryStoreAPI.Repositories
                 returnedProducts.Add(new Products { Id = item.id, Description = item.description, Price = item.price });
             }
 
-            if (condition != null)
-            {
-                returnedProducts = returnedProducts.Where(condition).ToList();
-            }
-
             return returnedProducts;
+
         }
 
-        public Products Save()
+        public Products GetById(int id)
         {
-            throw new NotImplementedException();
+            return this.GetAll().FirstOrDefault(p => p.Id == id);
+
+
+        }
+
+        public Products Save(Products customer)
+        {
+            return new Products();
         }
     }
 }

@@ -9,9 +9,9 @@ namespace GroceryStoreAPI.Interfaces
 {
     public interface IGroceryStoreService
     {
-        GroceryStoreInfo GetAll();
+        GroceryStoreInfo Build();
 
-        List<GroceryStoreInfo> GetById();
+        List<GroceryStoreInfo> GetByCustomerId(int id);
 
         GroceryStoreInfo Save(GroceryStoreInfo storeInfo);
     }

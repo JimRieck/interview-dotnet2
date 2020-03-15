@@ -11,6 +11,7 @@ namespace GroceryStoreAPI.Interfaces
         GroceryStoreInfo GetById(int id);
 
         GroceryStoreInfo Save(GroceryStoreInfo storeInfo);
-        
+
+
     }
 }
