@@ -5,19 +5,16 @@ using GroceryStoreAPI.Models;
 
 namespace Tests
 {
-    public class ProductsRepository
+    public class ProductsRepository : BaseTest
     {
-        List<Products> expectedProducts;
-        GroceryStoreAPI.Repositories.ProductsRepository subjectUnderTest;
-        int expectedCount = 3;
+         List<Products> expectedProducts;
+         GroceryStoreAPI.Repositories.ProductsRepository subjectUnderTest;
+         int expectedCount = 3;
 
         [SetUp]
         public void Setup()
         {
-            expectedProducts = new List<Products>();
-            expectedProducts.Add(new Products { Id = 1, Description = "apple", Price = .5 });
-            expectedProducts.Add(new Products { Id = 2, Description = "orange", Price = .75 });
-            expectedProducts.Add(new Products { Id = 3, Description = "bananna", Price = .85 });
+            expectedProducts = this.GetProducts();
 
             subjectUnderTest = new GroceryStoreAPI.Repositories.ProductsRepository();
         }
@@ -28,7 +25,6 @@ namespace Tests
             List<Products> actualProducts = subjectUnderTest.GetAll().ToList();
 
             Assert.AreEqual(expectedCount, actualProducts.Count);
-            
         }
 
         [Test]

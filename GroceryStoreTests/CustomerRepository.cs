@@ -9,11 +9,11 @@ using GroceryStoreAPI.Models;
 
 namespace Tests
 {
-    public class CustomerRepository
+    public class CustomerRepository : BaseTest
     {
-        List<Customers> expectedCustomers;
-        GroceryStoreAPI.Repositories.CustomerRepository subjectUnderTest;
-        int expectedCount = 3;
+         List<Customers> expectedCustomers;
+         GroceryStoreAPI.Repositories.CustomerRepository subjectUnderTest;
+         int expectedCount = 3;
 
         [SetUp]
         public void Setup()

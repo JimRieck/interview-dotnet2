@@ -11,19 +11,18 @@ namespace GroceryStoreAPI.Services
 {
     public class GroceryStoreService : IGroceryStoreService
     {
-        IGroceryStoreRepository groceryRepository;
+       
 
         ICustomerRepository customerRepository;
         IOrdersRepository ordersRepository;
         IProductsRepository productsRepository;
         
 
-        public GroceryStoreService(IGroceryStoreRepository groceryRepository,
-            ICustomerRepository customerRepository,
+        public GroceryStoreService(ICustomerRepository customerRepository,
             IOrdersRepository ordersRepository, 
             IProductsRepository productsRepository)
         {
-            this.groceryRepository = groceryRepository;
+           
             this.customerRepository = customerRepository;
             this.ordersRepository = ordersRepository;
             this.productsRepository = productsRepository;

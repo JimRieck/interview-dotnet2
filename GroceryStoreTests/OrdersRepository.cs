@@ -9,17 +9,17 @@ using GroceryStoreAPI.Models;
 
 namespace Tests
 {
-    public class OrdersRepository
+    public class OrdersRepository : BaseTest
     {
-        List<Orders> expectedOrders;
-        GroceryStoreAPI.Repositories.OrdersRepository subjectUnderTest;
-        int expectedCount = 1;
+         List<Orders> expectedOrders;
+         GroceryStoreAPI.Repositories.OrdersRepository subjectUnderTest;
+         int expectedCount = 1;
 
         [SetUp]
         public void Setup()
         {
-            expectedOrders = new List<Orders>();
-            expectedOrders.Add(new Orders { Id = 1, CustomerId =  1});
+            expectedOrders = this.GetOrders();
+           
 
             subjectUnderTest = new GroceryStoreAPI.Repositories.OrdersRepository();
         }
@@ -27,11 +27,9 @@ namespace Tests
         [Test]
         public void ShouldReturnAllOrders()
         {
-            
             List<Orders> orders = subjectUnderTest.GetAll();
 
             Assert.AreEqual(expectedCount, orders.Count);
-            
         }
 
         [Test]
