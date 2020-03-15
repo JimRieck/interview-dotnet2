@@ -5,7 +5,12 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Interfaces
 {
-    public interface IDataRepository
+    public interface ICustomerRepository
     {
+        List<Customers> GetAll();
+
+        Customers GetById(int id);
+
+        Customers Save(Customers model);
     }
 }

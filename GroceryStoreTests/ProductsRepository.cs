@@ -8,7 +8,7 @@ namespace Tests
     public class ProductsRepository
     {
         List<Products> expectedProducts;
-        GroceryStoreAPI.Repositories.ProductsRepository<Products> subjectUnderTest;
+        GroceryStoreAPI.Repositories.ProductsRepository subjectUnderTest;
         int expectedCount = 3;
 
         [SetUp]
@@ -19,7 +19,7 @@ namespace Tests
             expectedProducts.Add(new Products { Id = 2, Description = "orange", Price = .75 });
             expectedProducts.Add(new Products { Id = 3, Description = "bananna", Price = .85 });
 
-            subjectUnderTest = new GroceryStoreAPI.Repositories.ProductsRepository<Products>();
+            subjectUnderTest = new GroceryStoreAPI.Repositories.ProductsRepository();
         }
 
         [Test]

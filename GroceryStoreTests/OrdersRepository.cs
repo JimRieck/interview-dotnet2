@@ -12,7 +12,7 @@ namespace Tests
     public class OrdersRepository
     {
         List<Orders> expectedOrders;
-        GroceryStoreAPI.Repositories.OrdersRepository<Orders> subjectUnderTest;
+        GroceryStoreAPI.Repositories.OrdersRepository subjectUnderTest;
         int expectedCount = 1;
 
         [SetUp]
@@ -21,7 +21,7 @@ namespace Tests
             expectedOrders = new List<Orders>();
             expectedOrders.Add(new Orders { Id = 1, CustomerId =  1});
 
-            subjectUnderTest = new GroceryStoreAPI.Repositories.OrdersRepository<Orders>();
+            subjectUnderTest = new GroceryStoreAPI.Repositories.OrdersRepository();
         }
 
         [Test]

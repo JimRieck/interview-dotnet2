@@ -6,21 +6,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace GroceryStoreAPI.Services
 {
     public class GroceryStoreService : IGroceryStoreService
     {
         IGroceryStoreRepository groceryRepository;
 
-        IDataRepository<Customers> customerRepository;
-        IDataRepository<Orders> ordersRepository;
-        IDataRepository<Products> productsRepository;
+        ICustomerRepository customerRepository;
+        IOrdersRepository ordersRepository;
+        IProductsRepository productsRepository;
         
 
         public GroceryStoreService(IGroceryStoreRepository groceryRepository,
-            IDataRepository<Customers> customerRepository,
-            IDataRepository<Orders> ordersRepository, 
-            IDataRepository<Products> productsRepository)
+            ICustomerRepository customerRepository,
+            IOrdersRepository ordersRepository, 
+            IProductsRepository productsRepository)
         {
             this.groceryRepository = groceryRepository;
             this.customerRepository = customerRepository;

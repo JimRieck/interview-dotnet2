@@ -1,5 +1,6 @@
 ﻿using GroceryStoreAPI.Interfaces;
 using GroceryStoreAPI.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GroceryStoreAPI.Repositories
 {
-    public class OrdersRepository<T> : BaseRepository<T> where T : Orders
+    public class OrdersRepository : BaseRepository, IOrdersRepository
     {
         public List<Orders> GetAll()
         {
@@ -51,6 +52,15 @@ namespace GroceryStoreAPI.Repositories
         public Orders Save(Orders order)
         {
             throw new NotImplementedException();
+        }
+
+        public dynamic ReadDataFromFile(string tableName)
+        {
+            var myJsonString = File.ReadAllText("database.json");
+            JObject rss = JObject.Parse(myJsonString);
+
+            dynamic jsonObj = JsonConvert.DeserializeObject(myJsonString);
+            return jsonObj[tableName];
         }
     }
 }

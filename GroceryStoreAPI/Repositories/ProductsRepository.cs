@@ -1,12 +1,15 @@
 ﻿using GroceryStoreAPI.Interfaces;
 using GroceryStoreAPI.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace GroceryStoreAPI.Repositories
 {
-    public class ProductsRepository<T> : BaseRepository<T> where T : Products
+    public class ProductsRepository : BaseRepository, IProductsRepository
     {
         public List<Products> GetAll()
         {
@@ -33,6 +36,15 @@ namespace GroceryStoreAPI.Repositories
         public Products Save(Products customer)
         {
             return new Products();
+        }
+
+        public dynamic ReadDataFromFile(string tableName)
+        {
+            var myJsonString = File.ReadAllText("database.json");
+            JObject rss = JObject.Parse(myJsonString);
+
+            dynamic jsonObj = JsonConvert.DeserializeObject(myJsonString);
+            return jsonObj[tableName];
         }
     }
 }
