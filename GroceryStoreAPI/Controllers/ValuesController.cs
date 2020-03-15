@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using GroceryStoreAPI.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace GroceryStoreAPI.Controllers
 {
@@ -20,7 +21,9 @@ namespace GroceryStoreAPI.Controllers
         public ActionResult<IEnumerable<string>> Get()
         {
             var foo = groceryStoreService.Build();
-            return new string[] { "value11", "value21" };
+            string jsonString = JsonConvert.SerializeObject(foo);
+           
+            return new string[] { jsonString };
         }
 
         // GET api/values/5
