@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GroceryStoreAPI.Interfaces;
+using GroceryStoreAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -24,8 +25,8 @@ namespace GroceryStoreAPI.Controllers
         public ActionResult<string> Get(int id)
         {
             var info = groceryStoreService.Build();
-            info.Products = info.Products.Where(o => o.Id == id).ToList();
-            return JsonConvert.SerializeObject(info.Products);
+            info.products = info.products.Where(o => o.Id == id).ToList();
+            return JsonConvert.SerializeObject(info.products);
         }
 
         // GET api/products
@@ -33,16 +34,21 @@ namespace GroceryStoreAPI.Controllers
         public ActionResult<string> Get()
         {
             var info = groceryStoreService.Build();
-            info.Products = info.Products.ToList();
+            info.products = info.products.ToList();
             
-            return JsonConvert.SerializeObject(info.Products);
+            return JsonConvert.SerializeObject(info.products);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Products newProduct)
         {
             var info = groceryStoreService.Build();
+            newProduct.Id = info.products.ToList().OrderBy(p => p.Id).LastOrDefault().Id + 1;
+
+            info.products.Add(newProduct);
+
+            this.groceryStoreService.Save(info);
 
         }
     }

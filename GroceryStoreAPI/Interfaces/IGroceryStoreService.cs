@@ -10,7 +10,7 @@ namespace GroceryStoreAPI.Interfaces
 
         List<GroceryStoreInfo> GetByCustomerId(int id);
 
-        GroceryStoreInfo Save(GroceryStoreInfo storeInfo);
+        void Save(GroceryStoreInfo storeInfo);
 
     }
 }

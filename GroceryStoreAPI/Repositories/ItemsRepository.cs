@@ -19,7 +19,7 @@ namespace GroceryStoreAPI.Repositories
             {
                 foreach (dynamic item in items)
                 {
-                    Items newItem = new Items { ProductId = (int)item.productId.Value, Quantity = (int)item.quantity.Value };
+                    Items newItem = new Items { ProductId = (int)item.ProductId.Value, Quantity = (int)item.Quantity.Value };
                     returnedItems.Add(newItem);
                 }
             }

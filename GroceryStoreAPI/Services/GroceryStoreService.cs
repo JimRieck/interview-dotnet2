@@ -1,8 +1,10 @@
 ﻿using GroceryStoreAPI.Interfaces;
 using GroceryStoreAPI.Models;
 using GroceryStoreAPI.Repositories;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,9 +31,9 @@ namespace GroceryStoreAPI.Services
         public GroceryStoreInfo Build()
         {
             GroceryStoreInfo info = new GroceryStoreInfo();
-            info.Customers = customerRepository.GetAll();
-            info.Orders = ordersRepository.GetAll();
-            info.Products = productsRepository.GetAll();
+            info.customers = customerRepository.GetAll();
+            info.orders = ordersRepository.GetAll();
+            info.products = productsRepository.GetAll();
 
            
 
@@ -43,9 +45,17 @@ namespace GroceryStoreAPI.Services
             throw new NotImplementedException();
         }
 
-        public GroceryStoreInfo Save(GroceryStoreInfo storeInfo)
+        public void Save(GroceryStoreInfo storeInfo)
         {
-            throw new NotImplementedException();
+            string jsonFile = JsonConvert.SerializeObject(storeInfo);
+            using (StreamWriter file = File.CreateText(@"database.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, storeInfo);
+            }
+           
         }
+
+      
     }
 }

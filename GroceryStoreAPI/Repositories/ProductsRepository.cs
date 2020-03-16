@@ -19,7 +19,7 @@ namespace GroceryStoreAPI.Repositories
 
             foreach (dynamic item in products)
             {
-                returnedProducts.Add(new Products { Id = item.id, Description = item.description, Price = item.price });
+                returnedProducts.Add(new Products { Id = item.Id, Description = item.Description, Price = item.Price });
             }
 
             return returnedProducts;

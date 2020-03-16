@@ -11,6 +11,6 @@ namespace GroceryStoreAPI.Models
 
         public int CustomerId { get; set; }
 
-        public List<Items> Items { get; set; }
+        public List<Items> items { get; set; }
     }
 }

@@ -24,8 +24,8 @@ namespace GroceryStoreAPI.Controllers
         public ActionResult<string> Get(int id)
         {
             var info = groceryStoreService.Build();
-            info.Customers =  info.Customers.Where(c => c.id == id).ToList();
-            info.Orders = info.Orders.Where(o => o.CustomerId == id).ToList();
+            info.customers =  info.customers.Where(c => c.id == id).ToList();
+            info.orders = info.orders.Where(o => o.CustomerId == id).ToList();
             return JsonConvert.SerializeObject(info);
         }
 
@@ -34,10 +34,10 @@ namespace GroceryStoreAPI.Controllers
         public ActionResult<string> GetCustomerOrders()
         {
             var info = groceryStoreService.Build();
-            info.Customers = info.Customers.ToList();
+            info.customers = info.customers.ToList();
 
-            string customers = JsonConvert.SerializeObject(info.Customers);
-            string orders = JsonConvert.SerializeObject(info.Orders);
+            string customers = JsonConvert.SerializeObject(info.customers);
+            string orders = JsonConvert.SerializeObject(info.orders);
 
             return string.Format("{0} {1}", customers, orders);
         }
@@ -48,16 +48,21 @@ namespace GroceryStoreAPI.Controllers
         public ActionResult<string> Get()
         {
             var info = groceryStoreService.Build();
-            info.Customers = info.Customers.ToList();
+            info.customers = info.customers.ToList();
             
-            return JsonConvert.SerializeObject(info.Customers);
+            return JsonConvert.SerializeObject(info.customers);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Customers newCustomer)
         {
             var info = groceryStoreService.Build();
+            newCustomer.id = info.customers.ToList().OrderBy(p => p.id).LastOrDefault().id + 1;
+
+            info.customers.Add(newCustomer);
+
+            this.groceryStoreService.Save(info);
 
         }
     }
