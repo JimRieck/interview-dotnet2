@@ -30,6 +30,20 @@ namespace GroceryStoreAPI.Controllers
         }
 
         // GET api/customer
+        [HttpGet("allcustomerorders")]
+        public ActionResult<string> GetCustomerOrders()
+        {
+            var info = groceryStoreService.Build();
+            info.Customers = info.Customers.ToList();
+
+            string customers = JsonConvert.SerializeObject(info.Customers);
+            string orders = JsonConvert.SerializeObject(info.Orders);
+
+            return string.Format("{0} {1}", customers, orders);
+        }
+
+
+        // GET api/customer
         [HttpGet]
         public ActionResult<string> Get()
         {
