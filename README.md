@@ -21,7 +21,7 @@ Implement the above listed requirements in a manner you see fitting.  Demonstrat
 Publish your implementation under your own github account.
 
 # Notes
-Hi there and thank you for looking at my code.  included in my solution are api integration tests that can be imported into postman 
+Hi there and thank you for looking at my code.  Included in my solution are api integration tests that can be imported into postman 
 and executed.  Please note that you have to import both the tests and the environment which has variables in it.  
 
 thanks again for your consideration and I look forward to hearing from you soon.
