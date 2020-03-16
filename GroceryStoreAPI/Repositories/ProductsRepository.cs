@@ -17,9 +17,9 @@ namespace GroceryStoreAPI.Repositories
 
             dynamic products = ReadDataFromFile("products");
 
-            foreach (dynamic item in products)
+            foreach (dynamic product in products)
             {
-                returnedProducts.Add(new Products { Id = item.Id, Description = item.Description, Price = item.Price });
+                returnedProducts.Add(new Products { id = product.id, description = product.description, price = product.price });
             }
 
             return returnedProducts;
@@ -28,7 +28,7 @@ namespace GroceryStoreAPI.Repositories
 
         public Products GetById(int id)
         {
-            return this.GetAll().FirstOrDefault(p => p.Id == id);
+            return this.GetAll().FirstOrDefault(p => p.id == id);
 
 
         }

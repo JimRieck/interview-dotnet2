@@ -34,7 +34,7 @@ namespace Tests
            
             Products actualProducts = subjectUnderTest.GetById(1);
 
-            Assert.IsTrue(actualProducts.Id == 1);
+            Assert.IsTrue(actualProducts.id == 1);
         }
     }
 }

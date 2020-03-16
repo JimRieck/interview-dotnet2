@@ -23,7 +23,7 @@ namespace GroceryStoreAPI.Repositories
 
             foreach (dynamic order in orders)
             {
-                Orders newOrder = new Orders { Id = order.Id, CustomerId = order.CustomerId, items = new List<Items>() };
+                Orders newOrder = new Orders { id = order.id, customerId = order.customerId, items = new List<Items>() };
 
                 List<Items> newItems = itemRepository.GetAll(order.ToString());
 
@@ -42,7 +42,7 @@ namespace GroceryStoreAPI.Repositories
 
         public Orders GetById(int id)
         {
-            return this.GetAll().FirstOrDefault(p => p.Id == id);
+            return this.GetAll().FirstOrDefault(p => p.id == id);
         }
 
         public Orders Save(Orders order)

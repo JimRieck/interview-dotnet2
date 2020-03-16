@@ -25,7 +25,7 @@ namespace GroceryStoreAPI.Controllers
         public ActionResult<string> Get(int id)
         {
             var info = groceryStoreService.Build();
-            info.products = info.products.Where(o => o.Id == id).ToList();
+            info.products = info.products.Where(o => o.id == id).ToList();
             return JsonConvert.SerializeObject(info.products);
         }
 
@@ -44,7 +44,7 @@ namespace GroceryStoreAPI.Controllers
         public void Post([FromBody] Products newProduct)
         {
             var info = groceryStoreService.Build();
-            newProduct.Id = info.products.ToList().OrderBy(p => p.Id).LastOrDefault().Id + 1;
+            newProduct.id = info.products.ToList().OrderBy(p => p.id).LastOrDefault().id + 1;
 
             info.products.Add(newProduct);
 

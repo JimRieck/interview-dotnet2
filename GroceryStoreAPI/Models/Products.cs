@@ -7,11 +7,11 @@ namespace GroceryStoreAPI.Models
 {
     public class Products 
     {
-        public int Id { get; set; }
+        public int id { get; set; }
 
-        public string Description { get; set; }
+        public string description { get; set; }
 
-        public double Price { get; set; }
+        public double price { get; set; }
 
        
     }

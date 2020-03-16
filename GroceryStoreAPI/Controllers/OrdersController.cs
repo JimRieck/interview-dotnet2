@@ -24,7 +24,7 @@ namespace GroceryStoreAPI.Controllers
         public ActionResult<string> Get(int id)
         {
             var info = groceryStoreService.Build();
-            info.orders = info.orders.Where(o => o.Id == id).ToList();
+            info.orders = info.orders.Where(o => o.id == id).ToList();
             return JsonConvert.SerializeObject(info.orders);
         }
 

@@ -19,9 +19,9 @@ namespace Tests
         public List<Products> GetProducts()
         {
             List<Products> expectedProducts = new List<Products>();
-            expectedProducts.Add(new Products { Id = 1, Description = "apple", Price = .5 });
-            expectedProducts.Add(new Products { Id = 2, Description = "orange", Price = .75 });
-            expectedProducts.Add(new Products { Id = 3, Description = "bananna", Price = .85 });
+            expectedProducts.Add(new Products { id = 1, description = "apple", price = .5 });
+            expectedProducts.Add(new Products { id = 2, description = "orange",price = .75 });
+            expectedProducts.Add(new Products { id = 3, description = "bananna", price = .85 });
 
             return expectedProducts;
         }
@@ -29,15 +29,15 @@ namespace Tests
         public List<Orders> GetOrders()
         {
             List<Orders> expectedOrders = new List<Orders>();
-            expectedOrders.Add(new Orders { Id = 1, CustomerId = 1 });
+            expectedOrders.Add(new Orders { id = 1, customerId = 1 });
             return expectedOrders;
         }
 
         public List<Items> GetItems()
         {
             List<Items> items = new List<Items>();
-            items.Add(new Items { ProductId = 1, Quantity = 2 });
-            items.Add(new Items { ProductId = 2, Quantity = 3 });
+            items.Add(new Items { productId = 1, quantity = 2 });
+            items.Add(new Items { productId = 2, quantity = 3 });
             return items;
         }
     }

@@ -25,7 +25,7 @@ namespace GroceryStoreAPI.Controllers
         {
             var info = groceryStoreService.Build();
             info.customers =  info.customers.Where(c => c.id == id).ToList();
-            info.orders = info.orders.Where(o => o.CustomerId == id).ToList();
+            info.orders = info.orders.Where(o => o.customerId == id).ToList();
             return JsonConvert.SerializeObject(info);
         }
 

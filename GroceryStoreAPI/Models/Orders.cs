@@ -7,9 +7,9 @@ namespace GroceryStoreAPI.Models
 {
     public class Orders
     {
-        public int Id { get; set; }
+        public int id { get; set; }
 
-        public int CustomerId { get; set; }
+        public int customerId { get; set; }
 
         public List<Items> items { get; set; }
     }

@@ -7,8 +7,8 @@ namespace GroceryStoreAPI.Models
 {
     public class Items
     {
-        public int ProductId { get; set; }
+        public int productId { get; set; }
 
-        public int Quantity { get; set; }
+        public int quantity { get; set; }
     }
 }
