@@ -56,8 +56,11 @@ namespace GroceryStoreAPI.Controllers
 
             info.customers.Add(newCustomer);
 
-            this.groceryStoreService.Save(info);
-
+            if (ModelState.IsValid)
+            {
+                this.groceryStoreService.Save(info);
+            }
+            
         }
     }
 }
