@@ -18,10 +18,7 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            expectedCustomers = new List<Customers>();
-            expectedCustomers.Add(new Customers { id = 1, name = "Bob" });
-            expectedCustomers.Add(new Customers { id = 2, name = "Mary" });
-            expectedCustomers.Add(new Customers { id = 3, name = "Joe" });
+            expectedCustomers = this.GetCustomers();
 
             subjectUnderTest = new GroceryStoreAPI.Repositories.CustomerRepository();
         }

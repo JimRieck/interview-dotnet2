@@ -11,8 +11,6 @@ namespace GroceryStoreAPI.Services
 {
     public class GroceryStoreService : IGroceryStoreService
     {
-       
-
         ICustomerRepository customerRepository;
         IOrdersRepository ordersRepository;
         IProductsRepository productsRepository;
@@ -34,6 +32,8 @@ namespace GroceryStoreAPI.Services
             info.Customers = customerRepository.GetAll();
             info.Orders = ordersRepository.GetAll();
             info.Products = productsRepository.GetAll();
+
+           
 
             return info;
         }

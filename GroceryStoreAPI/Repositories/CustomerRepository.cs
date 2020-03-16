@@ -24,8 +24,6 @@ namespace GroceryStoreAPI.Repositories
         public Customers GetById(int id)
         {
             return this.GetAll().FirstOrDefault(p => p.id == id);
-            
-            
         }
 
         public Customers Save(Customers customer) {

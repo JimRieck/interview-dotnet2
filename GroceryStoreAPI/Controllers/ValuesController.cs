@@ -20,8 +20,8 @@ namespace GroceryStoreAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            var foo = groceryStoreService.Build();
-            string jsonString = JsonConvert.SerializeObject(foo);
+            var info = groceryStoreService.Build();
+            string jsonString = JsonConvert.SerializeObject(info);
            
             return new string[] { jsonString };
         }
@@ -30,6 +30,9 @@ namespace GroceryStoreAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
+            //var info = groceryStoreService.Build<Customers>(c => c.id == id);
+            //string jsonString = JsonConvert.SerializeObject(info);
+            //return jsonString;
             return "value";
         }
 
@@ -37,17 +40,12 @@ namespace GroceryStoreAPI.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
+
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
         {
         }
     }
