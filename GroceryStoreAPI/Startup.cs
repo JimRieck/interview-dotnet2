@@ -1,4 +1,5 @@
 ﻿using GroceryStoreAPI.Interfaces;
+using GroceryStoreAPI.Models;
 using GroceryStoreAPI.Repositories;
 using GroceryStoreAPI.Services;
 using Microsoft.AspNetCore.Builder;
@@ -25,11 +26,11 @@ namespace GroceryStoreAPI
             services.AddScoped<IGroceryStoreService, GroceryStoreService>();
             services.AddScoped<IGroceryStoreRepository, GroceryStoreRepository>();
 
-            services.AddScoped<IDataRepository, BaseRepository>();
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<IOrdersRepository, OrdersRepository>();
-            services.AddScoped<IProductsRepository, ProductsRepository>();
-            services.AddScoped<IItemsRepository, ItemsRepository>();
+             services.AddScoped(typeof(IDataRepository<>), typeof(DataRepository<>));
+            services.AddScoped(typeof(IDataRepository<Customers>), typeof(CustomerRepository));
+            services.AddScoped(typeof(IDataRepository<Orders>), typeof(OrdersRepository));
+            services.AddScoped(typeof(IDataRepository<Products>), typeof(ProductsRepository));
+            
 
         }
 

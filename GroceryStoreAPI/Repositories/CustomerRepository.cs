@@ -1,22 +1,25 @@
 ﻿using GroceryStoreAPI.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 
 namespace GroceryStoreAPI.Repositories
 {
-    public class CustomerRepository : BaseRepository, ICustomerRepository 
+    public class CustomerRepository : DataRepository<Customers> 
     {
-        public List<Customers> GetAll()
+        public override List<Customers> GetAll() 
         {
             List<Customers> returnedCustomers = new List<Customers>();
             
-            dynamic customers = this.ReadDataFromFile("customers");
+            dynamic customers = jsonFileReader.ReadDataFromFile("customers");
           
             foreach (dynamic item in customers)
             {
                 returnedCustomers.Add(new Customers { id = item.id, name = item.name });
             }
-
+          
+          
             return returnedCustomers;
             
         }

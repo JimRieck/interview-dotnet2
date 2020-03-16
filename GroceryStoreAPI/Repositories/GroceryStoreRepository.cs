@@ -7,15 +7,15 @@ namespace GroceryStoreAPI
 {
     public class GroceryStoreRepository : IGroceryStoreRepository
     {
-        ICustomerRepository customerRepository;
-        IOrdersRepository ordersRepository;
-        IProductsRepository productsRepository;
+        IDataRepository<Customers> customerRepository;
+        IDataRepository<Orders> ordersRepository;
+        IDataRepository<Products> productsRepository;
        
 
 
-        public GroceryStoreRepository(ICustomerRepository customerRepository,
-            IOrdersRepository ordersRepository,
-            IProductsRepository productsRepository)
+        public GroceryStoreRepository(IDataRepository<Customers> customerRepository,
+            IDataRepository<Orders> ordersRepository,
+            IDataRepository<Products> productsRepository)
         {
 
             this.customerRepository = customerRepository;

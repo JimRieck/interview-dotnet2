@@ -9,13 +9,13 @@ using System.Linq;
 
 namespace GroceryStoreAPI.Repositories
 {
-    public class ProductsRepository : BaseRepository, IProductsRepository
+    public class ProductsRepository : DataRepository<Products>
     {
-        public List<Products> GetAll()
+        public override List<Products> GetAll()
         {
             List<Products> returnedProducts = new List<Products>();
 
-            dynamic products = ReadDataFromFile("products");
+            dynamic products = jsonFileReader.ReadDataFromFile("products");
 
             foreach (dynamic product in products)
             {

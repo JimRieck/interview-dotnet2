@@ -1,12 +1,9 @@
 ﻿using GroceryStoreAPI;
 using GroceryStoreAPI.Interfaces;
 using GroceryStoreAPI.Models;
-using GroceryStoreAPI.Services;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Tests;
 
 namespace GroceryStoreTests
@@ -14,9 +11,9 @@ namespace GroceryStoreTests
     public class GroceryStoreService : BaseTest
     {
         private Mock<IGroceryStoreRepository> mockGroceryStoreRepository;
-        private Mock<ICustomerRepository> mockCustomerRepository;
-        private Mock<IOrdersRepository> mockOrdersRepository;
-        private Mock<IProductsRepository> mockProductsRepository;
+        private Mock<IDataRepository<Customers>> mockCustomerRepository;
+        private Mock<IDataRepository<Orders>> mockOrdersRepository;
+        private Mock<IDataRepository<Products>> mockProductsRepository;
         private List<Customers> expectedCustomers;
         private List<Orders> expectedOrders;
         private List<Products> expectedProducts;
@@ -28,9 +25,9 @@ namespace GroceryStoreTests
         public void Setup()
         {
             mockGroceryStoreRepository = new Mock<IGroceryStoreRepository>();
-            mockCustomerRepository = new Mock<ICustomerRepository>();
-            mockOrdersRepository = new Mock<IOrdersRepository>();
-            mockProductsRepository = new Mock<IProductsRepository>();
+            mockCustomerRepository = new Mock<IDataRepository<Customers>>();
+            mockOrdersRepository = new Mock<IDataRepository<Orders>>();
+            mockProductsRepository = new Mock<IDataRepository<Products>>();
 
 
             expectedCustomers = this.GetCustomers();
