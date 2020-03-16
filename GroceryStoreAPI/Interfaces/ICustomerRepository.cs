@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace GroceryStoreAPI.Interfaces
 {
     public interface ICustomerRepository
     {
         List<Customers> GetAll();
-
-        Customers GetById(int id);
-
-        Customers Save(Customers model);
     }
 }

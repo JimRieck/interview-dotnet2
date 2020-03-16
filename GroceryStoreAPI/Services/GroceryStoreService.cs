@@ -13,46 +13,21 @@ namespace GroceryStoreAPI.Services
 {
     public class GroceryStoreService : IGroceryStoreService
     {
-        ICustomerRepository customerRepository;
-        IOrdersRepository ordersRepository;
-        IProductsRepository productsRepository;
-        
+        IGroceryStoreRepository groceryStoreRepository;
 
-        public GroceryStoreService(ICustomerRepository customerRepository,
-            IOrdersRepository ordersRepository, 
-            IProductsRepository productsRepository)
+        public GroceryStoreService(IGroceryStoreRepository groceryStoreRepository)
         {
-           
-            this.customerRepository = customerRepository;
-            this.ordersRepository = ordersRepository;
-            this.productsRepository = productsRepository;
+            this.groceryStoreRepository = groceryStoreRepository;
         }
 
         public GroceryStoreInfo Build()
         {
-            GroceryStoreInfo info = new GroceryStoreInfo();
-            info.customers = customerRepository.GetAll();
-            info.orders = ordersRepository.GetAll();
-            info.products = productsRepository.GetAll();
-
-           
-
-            return info;
-        }
-
-        public List<GroceryStoreInfo> GetByCustomerId(int id)
-        {
-            throw new NotImplementedException();
+            return groceryStoreRepository.Build();
         }
 
         public void Save(GroceryStoreInfo storeInfo)
         {
-            string jsonFile = JsonConvert.SerializeObject(storeInfo);
-            using (StreamWriter file = File.CreateText(@"database.json"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, storeInfo);
-            }
+            groceryStoreRepository.Save(storeInfo);
            
         }
 

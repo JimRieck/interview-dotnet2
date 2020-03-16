@@ -1,17 +1,11 @@
 ﻿using GroceryStoreAPI.Models;
-using System;
-using System.Collections.Generic;
 
 namespace GroceryStoreAPI.Interfaces
 {
     public interface IGroceryStoreRepository
     {
-        GroceryStoreInfo GetAll();
+        GroceryStoreInfo Build();
 
-        GroceryStoreInfo GetById(int id);
-
-        GroceryStoreInfo Save(GroceryStoreInfo storeInfo);
-
-
+        void Save(GroceryStoreInfo storeInfo);
     }
 }

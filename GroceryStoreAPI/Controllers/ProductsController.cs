@@ -11,14 +11,12 @@ namespace GroceryStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : Controller
+    public class ProductsController : GroceryStoreController
     {
-        IGroceryStoreService groceryStoreService { get; set; }
-
-        public ProductsController(IGroceryStoreService groceryStoreService)
+        public ProductsController(IGroceryStoreService groceryStoreService) : base(groceryStoreService)
         {
-            this.groceryStoreService = groceryStoreService;
         }
+
 
         // GET api/products/5
         [HttpGet("{id}")]
@@ -49,7 +47,6 @@ namespace GroceryStoreAPI.Controllers
             info.products.Add(newProduct);
 
             this.groceryStoreService.Save(info);
-
         }
     }
 }

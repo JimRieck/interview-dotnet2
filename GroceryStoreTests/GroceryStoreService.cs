@@ -20,6 +20,7 @@ namespace GroceryStoreTests
         private List<Customers> expectedCustomers;
         private List<Orders> expectedOrders;
         private List<Products> expectedProducts;
+        private GroceryStoreInfo expectedStoreInfo;
 
         private GroceryStoreAPI.Services.GroceryStoreService subjectUnderTest;
 
@@ -35,22 +36,18 @@ namespace GroceryStoreTests
             expectedCustomers = this.GetCustomers();
             expectedOrders = this.GetOrders();
             expectedProducts = this.GetProducts();
+            expectedStoreInfo = this.GetInfo();
 
-            subjectUnderTest = new GroceryStoreAPI.Services.GroceryStoreService(mockCustomerRepository.Object, mockOrdersRepository.Object, mockProductsRepository.Object);
+            subjectUnderTest = new GroceryStoreAPI.Services.GroceryStoreService(mockGroceryStoreRepository.Object);
         }
 
         [Test]
         public void ShouldPopulateGroceryStoreInfoObject()
         {
-            mockCustomerRepository.Setup(p => p.GetAll()).Returns(expectedCustomers);
-            mockOrdersRepository.Setup(p => p.GetAll()).Returns(expectedOrders);
-            mockProductsRepository.Setup(p => p.GetAll()).Returns(expectedProducts);
-
+            mockGroceryStoreRepository.Setup(p => p.Build()).Returns(expectedStoreInfo);
             subjectUnderTest.Build();
 
-            mockCustomerRepository.VerifyAll();
-            mockOrdersRepository.VerifyAll();
-            mockProductsRepository.VerifyAll();
+            mockGroceryStoreRepository.VerifyAll();
         }
     }
 }

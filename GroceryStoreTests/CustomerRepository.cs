@@ -32,16 +32,5 @@ namespace Tests
             Assert.AreEqual(expectedCount, customers.Count);
             
         }
-
-        [Test]
-        public void ShouldReturnCustomerWithId1()
-        {
-            expectedCount = 1;
-            
-            Customers customer = subjectUnderTest.GetById(1);
-
-            Assert.IsNotNull(customer);
-            
-        }
     }
 }

@@ -35,18 +35,5 @@ namespace Tests
             Assert.AreEqual(expectedCount, orders.Count);
             mockItemsRepository.VerifyAll();
         }
-
-        [Test]
-        public void ShouldReturnOrdersWithId1()
-        {
-            expectedCount = 1;
-            
-            Orders order = subjectUnderTest.GetById(1);
-
-            Assert.IsNotNull(order);
-            mockItemsRepository.VerifyAll();
-        }
-
-       
     }
 }

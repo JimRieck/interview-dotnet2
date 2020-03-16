@@ -26,15 +26,5 @@ namespace Tests
 
             Assert.AreEqual(expectedCount, actualProducts.Count);
         }
-
-        [Test]
-        public void ShouldReturnProductsWithId1()
-        {
-            expectedCount = 1;
-           
-            Products actualProducts = subjectUnderTest.GetById(1);
-
-            Assert.IsTrue(actualProducts.id == 1);
-        }
     }
 }

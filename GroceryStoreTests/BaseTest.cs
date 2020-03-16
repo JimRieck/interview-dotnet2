@@ -6,6 +6,17 @@ namespace Tests
 {
     public class BaseTest
     {
+        public GroceryStoreInfo GetInfo()
+        {
+            return new GroceryStoreInfo
+            {
+                customers = this.GetCustomers(),
+                orders = this.GetOrders(),
+                products = this.GetProducts()
+            };
+        }
+
+
         public List<Customers> GetCustomers()
         {
             List<Customers> expectedCustomers = new List<Customers>();

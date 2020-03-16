@@ -1,0 +1,466 @@
+{
+	"info": {
+		"_postman_id": "77706141-1830-4798-9f11-58e663df3c1c",
+		"name": "GroceryStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AddProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 99,\r\n        \"description\": \"Strawberry\",\r\n        \"price\": 0.50\r\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44341/api/products",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44341",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 1,\r\n        \"name\": \"Steve\"\r\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44341/api/customer",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44341",
+					"path": [
+						"api",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetGroceryStoreData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2a9ea0e9-e6ef-44be-8b54-3e7d833daef4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Get data\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"  ",
+							"    pm.expect(jsonData).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44341/api/values",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44341",
+					"path": [
+						"api",
+						"values"
+					],
+					"query": [
+						{
+							"key": "content-type",
+							"value": "json",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a14f1e6-cc3f-4dc1-809b-22ade7409d51",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Get Correct customer\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"   ",
+							"    pm.expect(jsonData.customers[0].id).to.eq(1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44341/api/customer/{{CustomerId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44341",
+					"path": [
+						"api",
+						"customer",
+						"{{CustomerId}}"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List All Customers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f014b72a-ce26-4e89-889c-fbdef342280a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Get data\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"  ",
+							"    pm.expect(jsonData).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44341/api/customer",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44341",
+					"path": [
+						"api",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List All Orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dff8ff91-6746-42ad-b718-ba60d656d576",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Get data\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"  ",
+							"    pm.expect(jsonData).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44341/api/orders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44341",
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List All Orders By Date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dff8ff91-6746-42ad-b718-ba60d656d576",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Get data\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"  ",
+							"    pm.expect(jsonData).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44341/api/orders/orderbydate/2020-03-16T11:31:52.2779739-04:00",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44341",
+					"path": [
+						"api",
+						"orders",
+						"orderbydate",
+						"2020-03-16T11:31:52.2779739-04:00"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List All Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dff8ff91-6746-42ad-b718-ba60d656d576",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Get data\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"  ",
+							"    pm.expect(jsonData).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44341/api/products",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44341",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Order By Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dff8ff91-6746-42ad-b718-ba60d656d576",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Get data\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"  ",
+							"    pm.expect(jsonData).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44341/api/orders/{{OrderId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44341",
+					"path": [
+						"api",
+						"orders",
+						"{{OrderId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Product By Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dff8ff91-6746-42ad-b718-ba60d656d576",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Get data\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"  ",
+							"    pm.expect(jsonData).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44341/api/products/{{ProductId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44341",
+					"path": [
+						"api",
+						"products",
+						"{{ProductId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List All Customer Orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dff8ff91-6746-42ad-b718-ba60d656d576",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Get data\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"  ",
+							"    pm.expect(jsonData).not.eq(undefined);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44341/api/customer/allcustomerorders",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44341",
+					"path": [
+						"api",
+						"customer",
+						"allcustomerorders"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

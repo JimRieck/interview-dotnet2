@@ -10,15 +10,12 @@ namespace GroceryStoreAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController : Controller
+    public class CustomerController : GroceryStoreController
     {
-        IGroceryStoreService groceryStoreService { get; set; }
-
-        public CustomerController(IGroceryStoreService groceryStoreService)
+        public CustomerController(IGroceryStoreService groceryStoreService) : base(groceryStoreService)
         {
-            this.groceryStoreService = groceryStoreService;
         }
-
+        
         // GET api/customer/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
@@ -36,10 +33,7 @@ namespace GroceryStoreAPI.Controllers
             var info = groceryStoreService.Build();
             info.customers = info.customers.ToList();
 
-            string customers = JsonConvert.SerializeObject(info.customers);
-            string orders = JsonConvert.SerializeObject(info.orders);
-
-            return string.Format("{0} {1}", customers, orders);
+            return string.Format("{0} {1}", JsonConvert.SerializeObject(info.customers), JsonConvert.SerializeObject(info.orders));
         }
 
 

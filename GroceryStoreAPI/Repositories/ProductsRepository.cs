@@ -25,17 +25,5 @@ namespace GroceryStoreAPI.Repositories
             return returnedProducts;
 
         }
-
-        public Products GetById(int id)
-        {
-            return this.GetAll().FirstOrDefault(p => p.id == id);
-
-
-        }
-
-        public Products Save(Products customer)
-        {
-            return new Products();
-        }
     }
 }

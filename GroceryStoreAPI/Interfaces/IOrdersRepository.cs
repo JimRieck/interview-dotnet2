@@ -7,8 +7,5 @@ namespace GroceryStoreAPI.Interfaces
     {
         List<Orders> GetAll();
 
-        Orders GetById(int id);
-
-        Orders Save(Orders model);
     }
 }

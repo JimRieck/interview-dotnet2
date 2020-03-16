@@ -1,23 +1,49 @@
-﻿using GroceryStoreAPI.Models;
-using System;
+﻿using GroceryStoreAPI.Interfaces;
+using GroceryStoreAPI.Models;
+using Newtonsoft.Json;
+using System.IO;
 
-namespace GroceryStoreAPI.Repositories
+namespace GroceryStoreAPI
 {
-    public class GroceryStoreRepository : BaseRepository
+    public class GroceryStoreRepository : IGroceryStoreRepository
     {
-        public virtual GroceryStoreInfo GetAll()
+        ICustomerRepository customerRepository;
+        IOrdersRepository ordersRepository;
+        IProductsRepository productsRepository;
+       
+
+
+        public GroceryStoreRepository(ICustomerRepository customerRepository,
+            IOrdersRepository ordersRepository,
+            IProductsRepository productsRepository)
         {
-            throw new NotImplementedException();
+
+            this.customerRepository = customerRepository;
+            this.ordersRepository = ordersRepository;
+            this.productsRepository = productsRepository;
+            
         }
 
-        public virtual GroceryStoreInfo GetById(int id)
+        public GroceryStoreInfo Build()
         {
-            throw new NotImplementedException();
+            GroceryStoreInfo info = new GroceryStoreInfo();
+            info.customers = customerRepository.GetAll();
+            info.orders = ordersRepository.GetAll();
+            info.products = productsRepository.GetAll();
+            
+            return info;
         }
 
-        public GroceryStoreInfo Save()
+        public void Save(GroceryStoreInfo storeInfo)
         {
-            throw new NotImplementedException();
+            string jsonFile = JsonConvert.SerializeObject(storeInfo);
+            using (StreamWriter file = File.CreateText(@"database.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, storeInfo);
+            }
+
         }
+
     }
 }

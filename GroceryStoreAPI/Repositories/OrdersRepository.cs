@@ -37,17 +37,5 @@ namespace GroceryStoreAPI.Repositories
             return returnedOrders;
             
         }
-
-       
-
-        public Orders GetById(int id)
-        {
-            return this.GetAll().FirstOrDefault(p => p.id == id);
-        }
-
-        public Orders Save(Orders order)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
