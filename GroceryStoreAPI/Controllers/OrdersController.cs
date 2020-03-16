@@ -28,6 +28,15 @@ namespace GroceryStoreAPI.Controllers
             return JsonConvert.SerializeObject(info.orders);
         }
 
+        // GET api/orders/5
+        [HttpGet("orderbydate/{date}")]
+        public ActionResult<string> Get(DateTime date)
+        {
+            var info = groceryStoreService.Build();
+            info.orders = info.orders.Where(o => o.orderdate == date).ToList();
+            return JsonConvert.SerializeObject(info.orders);
+        }
+
         // GET api/orders
         [HttpGet]
         public ActionResult<string> Get()

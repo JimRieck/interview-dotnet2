@@ -9,6 +9,8 @@ namespace GroceryStoreAPI.Models
     {
         public int id { get; set; }
 
+        public DateTime orderdate { get; set; }
+
         public int customerId { get; set; }
 
         public List<Items> items { get; set; }

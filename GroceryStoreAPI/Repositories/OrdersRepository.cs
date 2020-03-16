@@ -23,7 +23,7 @@ namespace GroceryStoreAPI.Repositories
 
             foreach (dynamic order in orders)
             {
-                Orders newOrder = new Orders { id = order.id, customerId = order.customerId, items = new List<Items>() };
+                Orders newOrder = new Orders { id = order.id, orderdate = order.orderdate == null ? DateTime.Now : order.orderdate , customerId = order.customerId, items = new List<Items>() };
 
                 List<Items> newItems = itemRepository.GetAll(order.ToString());
 
