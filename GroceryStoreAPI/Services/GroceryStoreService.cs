@@ -1,12 +1,5 @@
 ﻿using GroceryStoreAPI.Interfaces;
 using GroceryStoreAPI.Models;
-using GroceryStoreAPI.Repositories;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 
 namespace GroceryStoreAPI.Services
